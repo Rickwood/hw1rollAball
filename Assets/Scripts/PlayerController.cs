@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour {
 
     private Rigidbody rb;
     private int count;
+    private bool gameOver = false;
 
     private void Start()
     {
@@ -18,6 +20,12 @@ public class PlayerController : MonoBehaviour {
         count = 0;
         SetCountText();
         winText.text = "";
+    }
+
+    private void Update()
+    {
+        if (gameOver == true)
+            GameOver();
     }
 
     void FixedUpdate()
@@ -44,6 +52,17 @@ public class PlayerController : MonoBehaviour {
     {
         countText.text = "Count: " + count.ToString();
         if (count >= 12)
-            winText.text = "You Win!";
+        {
+            winText.text = "You Win! \r\n Press 'Esc' to return to the Menu";
+            gameOver = true;
+        }
+    }
+
+    void GameOver()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 }

@@ -42,6 +42,11 @@ public class GameController : MonoBehaviour {
                 //Application.LoadLevel(Application.loadedLevel);
                 SceneManager.LoadScene("SpaceShooter");
             }
+            
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("Menu");
+            }
         }
     }
 
